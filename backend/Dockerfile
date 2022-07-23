@@ -3,4 +3,4 @@ WORKDIR /src
 COPY . .
 RUN npm install
 EXPOSE 2000
-CMD [ "node" "server.js" ]
+CMD [ "node","server.js" ]
