@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
   }
 
   getProduct = () => {
-    
+
     this.setState({ loading: true });
 
     let data = '?';
@@ -50,7 +50,7 @@ export default class Dashboard extends Component {
     if (this.state.search) {
       data = `${data}&search=${this.state.search}`;
     }
-    axios.get(`http://localhost:2000/get-product${data}`, {
+    axios.get(`http://backend:2000/get-product${data}`, {
       headers: {
         'token': this.state.token
       }
@@ -62,12 +62,12 @@ export default class Dashboard extends Component {
         icon: "error",
         type: "error"
       });
-      this.setState({ loading: false, products: [], pages: 0 },()=>{});
+      this.setState({ loading: false, products: [], pages: 0 }, () => { });
     });
   }
 
   deleteProduct = (id) => {
-    axios.post('http://localhost:2000/delete-product', {
+    axios.post('http://backend:2000/delete-product', {
       id: id
     }, {
       headers: {
@@ -126,7 +126,7 @@ export default class Dashboard extends Component {
     file.append('discount', this.state.discount);
     file.append('price', this.state.price);
 
-    axios.post('http://localhost:2000/add-product', file, {
+    axios.post('http://backend:2000/add-product', file, {
       headers: {
         'content-type': 'multipart/form-data',
         'token': this.state.token
@@ -164,7 +164,7 @@ export default class Dashboard extends Component {
     file.append('discount', this.state.discount);
     file.append('price', this.state.price);
 
-    axios.post('http://localhost:2000/update-product', file, {
+    axios.post('http://backend:2000/update-product', file, {
       headers: {
         'content-type': 'multipart/form-data',
         'token': this.state.token
@@ -302,7 +302,7 @@ export default class Dashboard extends Component {
               variant="contained"
               component="label"
             > Upload
-            <input
+              <input
                 id="standard-basic"
                 type="file"
                 accept="image/*"
@@ -382,7 +382,7 @@ export default class Dashboard extends Component {
               variant="contained"
               component="label"
             > Upload
-            <input
+              <input
                 id="standard-basic"
                 type="file"
                 accept="image/*"
@@ -443,7 +443,7 @@ export default class Dashboard extends Component {
                   <TableCell align="center" component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell align="center"><img src={`http://localhost:2000/${row.image}`} width="70" height="70" /></TableCell>
+                  <TableCell align="center"><img src={`http://backend:2000/${row.image}`} width="70" height="70" /></TableCell>
                   <TableCell align="center">{row.desc}</TableCell>
                   <TableCell align="center">{row.price}</TableCell>
                   <TableCell align="center">{row.discount}</TableCell>
@@ -456,7 +456,7 @@ export default class Dashboard extends Component {
                       onClick={(e) => this.handleProductEditOpen(row)}
                     >
                       Edit
-                  </Button>
+                    </Button>
                     <Button
                       className="button_style"
                       variant="outlined"
@@ -465,7 +465,7 @@ export default class Dashboard extends Component {
                       onClick={(e) => this.deleteProduct(row._id)}
                     >
                       Delete
-                  </Button>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
